@@ -1,0 +1,34 @@
+{
+  "Poppins Typography": {
+    "$type": "typography",
+    "Heading": {
+      "H1": { "$value": { "fontFamily": "Poppins", "fontWeight": 600, "fontSize": "32px", "lineHeight": "40px", "letterSpacing": "-0.64px" } },
+      "H2": { "$value": { "fontFamily": "Poppins", "fontWeight": 600, "fontSize": "24px", "lineHeight": "32px", "letterSpacing": "-0.36px" } },
+      "H3": { "$value": { "fontFamily": "Poppins", "fontWeight": 600, "fontSize": "20px", "lineHeight": "28px", "letterSpacing": "-0.2px" } },
+      "H4": { "$value": { "fontFamily": "Poppins", "fontWeight": 600, "fontSize": "18px", "lineHeight": "26px", "letterSpacing": "-0.09px" } },
+      "H5": { "$value": { "fontFamily": "Poppins", "fontWeight": 600, "fontSize": "16px", "lineHeight": "24px", "letterSpacing": "0px" } },
+      "H6": { "$value": { "fontFamily": "Poppins", "fontWeight": 600, "fontSize": "14px", "lineHeight": "20px", "letterSpacing": "0px" } }
+    },
+    "Body": {
+      "Large": { "$value": { "fontFamily": "Poppins", "fontWeight": 400, "fontSize": "16px", "lineHeight": "26px", "letterSpacing": "0px" } },
+      "Medium": { "$value": { "fontFamily": "Poppins", "fontWeight": 400, "fontSize": "14px", "lineHeight": "22px", "letterSpacing": "0px" } },
+      "Small": { "$value": { "fontFamily": "Poppins", "fontWeight": 400, "fontSize": "12px", "lineHeight": "18px", "letterSpacing": "0px" } },
+      "Caption": { "$value": { "fontFamily": "Poppins", "fontWeight": 400, "fontSize": "11px", "lineHeight": "16px", "letterSpacing": "0.06px" } },
+      "Overline": { "$value": { "fontFamily": "Poppins", "fontWeight": 600, "fontSize": "10px", "lineHeight": "14px", "letterSpacing": "0.8px" } }
+    },
+    "Component": {
+      "Table Header": { "$value": { "fontFamily": "Poppins", "fontWeight": 600, "fontSize": "10px", "lineHeight": "14px", "letterSpacing": "0.6px" } },
+      "Table Data": { "$value": { "fontFamily": "Poppins", "fontWeight": 400, "fontSize": "12px", "lineHeight": "18px", "letterSpacing": "0px" } },
+      "Form Label": { "$value": { "fontFamily": "Poppins", "fontWeight": 500, "fontSize": "12px", "lineHeight": "18px", "letterSpacing": "0px" } },
+      "Input Text": { "$value": { "fontFamily": "Poppins", "fontWeight": 400, "fontSize": "14px", "lineHeight": "22px", "letterSpacing": "0px" } },
+      "Button Medium": { "$value": { "fontFamily": "Poppins", "fontWeight": 600, "fontSize": "12px", "lineHeight": "18px", "letterSpacing": "0.12px" } },
+      "Sidebar Menu": { "$value": { "fontFamily": "Poppins", "fontWeight": 500, "fontSize": "12px", "lineHeight": "18px", "letterSpacing": "0px" } },
+      "Navbar Title": { "$value": { "fontFamily": "Poppins", "fontWeight": 600, "fontSize": "14px", "lineHeight": "20px", "letterSpacing": "-0.07px" } },
+      "Card Title": { "$value": { "fontFamily": "Poppins", "fontWeight": 600, "fontSize": "14px", "lineHeight": "20px", "letterSpacing": "0px" } },
+      "Statistic Value": { "$value": { "fontFamily": "Poppins", "fontWeight": 600, "fontSize": "24px", "lineHeight": "32px", "letterSpacing": "-0.48px" } },
+      "Modal Title": { "$value": { "fontFamily": "Poppins", "fontWeight": 600, "fontSize": "18px", "lineHeight": "26px", "letterSpacing": "-0.09px" } },
+      "Status Badge": { "$value": { "fontFamily": "Poppins", "fontWeight": 500, "fontSize": "10px", "lineHeight": "14px", "letterSpacing": "0.1px" } },
+      "Toast Title": { "$value": { "fontFamily": "Poppins", "fontWeight": 600, "fontSize": "13px", "lineHeight": "20px", "letterSpacing": "0px" } }
+    }
+  }
+}

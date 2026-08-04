@@ -1,0 +1,81 @@
+{
+  "fontFamily": {
+    "sans": "Poppins, Arial, sans-serif"
+  },
+  "fontWeight": {
+    "regular": 400,
+    "medium": 500,
+    "semibold": 600
+  },
+  "typography": {
+    "heading": {
+      "h1": { "fontSize": 32, "fontWeight": 600, "lineHeight": 40, "letterSpacing": -0.64 },
+      "h2": { "fontSize": 24, "fontWeight": 600, "lineHeight": 32, "letterSpacing": -0.36 },
+      "h3": { "fontSize": 20, "fontWeight": 600, "lineHeight": 28, "letterSpacing": -0.2 },
+      "h4": { "fontSize": 18, "fontWeight": 600, "lineHeight": 26, "letterSpacing": -0.09 },
+      "h5": { "fontSize": 16, "fontWeight": 600, "lineHeight": 24, "letterSpacing": 0 },
+      "h6": { "fontSize": 14, "fontWeight": 600, "lineHeight": 20, "letterSpacing": 0 }
+    },
+    "body": {
+      "large": { "fontSize": 16, "fontWeight": 400, "lineHeight": 26, "letterSpacing": 0 },
+      "medium": { "fontSize": 14, "fontWeight": 400, "lineHeight": 22, "letterSpacing": 0 },
+      "small": { "fontSize": 12, "fontWeight": 400, "lineHeight": 18, "letterSpacing": 0 },
+      "caption": { "fontSize": 11, "fontWeight": 400, "lineHeight": 16, "letterSpacing": 0.06 },
+      "overline": { "fontSize": 10, "fontWeight": 600, "lineHeight": 14, "letterSpacing": 0.8 }
+    },
+    "table": {
+      "header": { "fontSize": 10, "fontWeight": 600, "lineHeight": 14, "letterSpacing": 0.6 },
+      "data": { "fontSize": 12, "fontWeight": 400, "lineHeight": 18, "letterSpacing": 0 },
+      "secondary": { "fontSize": 11, "fontWeight": 400, "lineHeight": 16, "letterSpacing": 0 },
+      "empty": { "fontSize": 13, "fontWeight": 400, "lineHeight": 20, "letterSpacing": 0 },
+      "pagination": { "fontSize": 11, "fontWeight": 500, "lineHeight": 16, "letterSpacing": 0 }
+    },
+    "form": {
+      "label": { "fontSize": 12, "fontWeight": 500, "lineHeight": 18, "letterSpacing": 0 },
+      "input": { "fontSize": 14, "fontWeight": 400, "lineHeight": 22, "letterSpacing": 0 },
+      "placeholder": { "fontSize": 14, "fontWeight": 400, "lineHeight": 22, "letterSpacing": 0 },
+      "helper": { "fontSize": 11, "fontWeight": 400, "lineHeight": 16, "letterSpacing": 0 },
+      "feedback": { "fontSize": 11, "fontWeight": 500, "lineHeight": 16, "letterSpacing": 0 }
+    },
+    "button": {
+      "large": { "fontSize": 14, "fontWeight": 600, "lineHeight": 20, "letterSpacing": 0.14 },
+      "medium": { "fontSize": 12, "fontWeight": 600, "lineHeight": 18, "letterSpacing": 0.12 },
+      "small": { "fontSize": 11, "fontWeight": 600, "lineHeight": 16, "letterSpacing": 0.11 }
+    },
+    "sidebar": {
+      "appName": { "fontSize": 14, "fontWeight": 600, "lineHeight": 20, "letterSpacing": -0.14 },
+      "menu": { "fontSize": 12, "fontWeight": 500, "lineHeight": 18, "letterSpacing": 0 },
+      "activeMenu": { "fontSize": 12, "fontWeight": 600, "lineHeight": 18, "letterSpacing": 0 },
+      "submenu": { "fontSize": 11, "fontWeight": 500, "lineHeight": 16, "letterSpacing": 0 },
+      "sectionTitle": { "fontSize": 10, "fontWeight": 600, "lineHeight": 14, "letterSpacing": 1 }
+    },
+    "navbar": {
+      "pageTitle": { "fontSize": 14, "fontWeight": 600, "lineHeight": 20, "letterSpacing": -0.07 },
+      "breadcrumb": { "fontSize": 11, "fontWeight": 500, "lineHeight": 16, "letterSpacing": 0 },
+      "username": { "fontSize": 11, "fontWeight": 600, "lineHeight": 16, "letterSpacing": 0 },
+      "role": { "fontSize": 10, "fontWeight": 400, "lineHeight": 14, "letterSpacing": 0 }
+    },
+    "card": {
+      "title": { "fontSize": 14, "fontWeight": 600, "lineHeight": 20, "letterSpacing": 0 },
+      "description": { "fontSize": 12, "fontWeight": 400, "lineHeight": 19, "letterSpacing": 0 },
+      "statisticValue": { "fontSize": 24, "fontWeight": 600, "lineHeight": 32, "letterSpacing": -0.48 },
+      "statisticLabel": { "fontSize": 11, "fontWeight": 500, "lineHeight": 16, "letterSpacing": 0 }
+    },
+    "modal": {
+      "title": { "fontSize": 18, "fontWeight": 600, "lineHeight": 26, "letterSpacing": -0.09 },
+      "description": { "fontSize": 13, "fontWeight": 400, "lineHeight": 20, "letterSpacing": 0 },
+      "footerAction": { "fontSize": 12, "fontWeight": 600, "lineHeight": 18, "letterSpacing": 0.12 }
+    },
+    "badge": {
+      "badge": { "fontSize": 10, "fontWeight": 600, "lineHeight": 14, "letterSpacing": 0.2 },
+      "status": { "fontSize": 10, "fontWeight": 500, "lineHeight": 14, "letterSpacing": 0.1 },
+      "chip": { "fontSize": 11, "fontWeight": 500, "lineHeight": 16, "letterSpacing": 0 }
+    },
+    "notification": {
+      "toastTitle": { "fontSize": 13, "fontWeight": 600, "lineHeight": 20, "letterSpacing": 0 },
+      "toastDescription": { "fontSize": 11, "fontWeight": 400, "lineHeight": 17, "letterSpacing": 0 },
+      "alertTitle": { "fontSize": 13, "fontWeight": 600, "lineHeight": 20, "letterSpacing": 0 },
+      "alertDescription": { "fontSize": 12, "fontWeight": 400, "lineHeight": 19, "letterSpacing": 0 }
+    }
+  }
+}

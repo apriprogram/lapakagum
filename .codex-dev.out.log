@@ -1,0 +1,67 @@
+
+> lapak_udang_ikan@0.1.0 dev
+> next dev --webpack
+
+▲ Next.js 16.2.10 (webpack)
+- Local:         http://localhost:3000
+- Network:       http://10.78.7.196:3000
+- Environments: .env
+✓ Ready in 3.8s
+
+○ Compiling proxy ...
+○ Compiling /admin/purchases ...
+ GET /admin/vendors 200 in 57s (next.js: 51s, proxy.ts: 1382ms, application-code: 4.2s)
+ GET /admin/purchases 200 in 57s (next.js: 51s, proxy.ts: 1389ms, application-code: 4.8s)
+ GET /api/auth/session 200 in 9.9s (next.js: 9.8s, application-code: 156ms)
+ GET /api/auth/session 200 in 93ms (next.js: 34ms, application-code: 59ms)
+ GET /api/auth/session 200 in 74ms (next.js: 7ms, application-code: 67ms)
+ GET /api/auth/session 200 in 95ms (next.js: 12ms, application-code: 83ms)
+ GET /api/auth/signin?callbackUrl=%2Fadmin%2Fvendors 302 in 4.9s (next.js: 2.8s, application-code: 2.1s)
+○ Compiling /login ...
+ GET /api/auth/signin?callbackUrl=%2Fadmin%2Fvendors 302 in 498ms (next.js: 398ms, application-code: 99ms)
+ GET /login?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2Fadmin%2Fvendors 200 in 296ms (next.js: 31ms, application-code: 266ms)
+ GET /api/auth/signin?callbackUrl=%2Fadmin%2Fvendors 302 in 634ms (next.js: 321ms, application-code: 313ms)
+ GET /login?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2Fadmin%2Fvendors 200 in 2.6s (next.js: 219ms, application-code: 2.4s)
+ GET /api/auth/session 200 in 368ms (next.js: 14ms, application-code: 353ms)
+ GET /api/auth/session 200 in 6.1s (next.js: 370ms, application-code: 5.7s)
+○ Compiling /admin/purchases ...
+ GET /api/auth/session 200 in 17.6s (next.js: 15.9s, application-code: 1699ms)
+ GET /api/auth/session 200 in 42s (next.js: 40s, application-code: 1701ms)
+ GET /admin/purchases 200 in 52s (next.js: 43s, proxy.ts: 5.7s, application-code: 3.6s)
+○ Compiling /api/upload ...
+ POST /api/auth/_log 200 in 6.8s (next.js: 5.9s, application-code: 889ms)
+ POST /api/auth/_log 200 in 6.8s (next.js: 5.9s, application-code: 907ms)
+ GET /api/auth/session 200 in 6.9s (next.js: 5.9s, application-code: 1056ms)
+ POST /api/upload 201 in 8.8s (next.js: 7.1s, application-code: 1646ms)
+ GET /api/auth/session 200 in 57ms (next.js: 8ms, application-code: 50ms)
+ POST /api/auth/_log 200 in 38ms (next.js: 5ms, application-code: 34ms)
+ GET /admin/vendors 200 in 54s (next.js: 7.6s, proxy.ts: 44s, application-code: 2.0s)
+ GET /api/auth/session 200 in 98ms (next.js: 15ms, application-code: 83ms)
+ GET /api/auth/session 200 in 55ms (next.js: 18ms, application-code: 38ms)
+ GET /api/auth/session 200 in 58ms (next.js: 4ms, application-code: 53ms)
+ POST /api/upload 201 in 148ms (next.js: 47ms, application-code: 102ms)
+ POST /admin/vendors 200 in 427ms (next.js: 10ms, proxy.ts: 17ms, application-code: 400ms)
+  └─ ƒ updateVendor(12, {}) in 101ms ..//src/app/actions/business.ts
+ GET /admin/vendors 200 in 187ms (next.js: 10ms, proxy.ts: 32ms, application-code: 145ms)
+ GET /admin/finance 200 in 2.9s (next.js: 2.7s, proxy.ts: 16ms, application-code: 266ms)
+ GET /admin/orders 200 in 2.2s (next.js: 1903ms, proxy.ts: 23ms, application-code: 301ms)
+ GET /admin/purchases 200 in 224ms (next.js: 76ms, proxy.ts: 16ms, application-code: 133ms)
+ GET /admin/stock 200 in 2.8s (next.js: 2.3s, proxy.ts: 22ms, application-code: 407ms)
+ GET /admin/debts 200 in 2.6s (next.js: 2.4s, proxy.ts: 14ms, application-code: 193ms)
+ GET /admin/reports 200 in 2.2s (next.js: 1957ms, proxy.ts: 14ms, application-code: 222ms)
+ GET /admin/finance 200 in 719ms (next.js: 57ms, proxy.ts: 16ms, application-code: 646ms)
+ GET /admin/vendors 200 in 199ms (next.js: 79ms, proxy.ts: 19ms, application-code: 102ms)
+ GET /api/auth/session 200 in 1513ms (next.js: 470ms, application-code: 1043ms)
+○ Compiling /api/auth/[...nextauth] ...
+ GET /api/auth/session 200 in 51s (next.js: 48s, application-code: 3.4s)
+ GET /api/auth/session 200 in 61s (next.js: 57s, application-code: 4.1s)
+ GET /api/auth/session 200 in 14.6s (next.js: 10.5s, application-code: 4.2s)
+ GET /admin/vendors 200 in 72s (next.js: 57s, proxy.ts: 8.2s, application-code: 6.4s)
+ GET /admin/vendors 200 in 65s (next.js: 263ms, proxy.ts: 59s, application-code: 5.5s)
+ GET /api/auth/session 200 in 350ms (next.js: 53ms, application-code: 297ms)
+ GET /admin/vendors 200 in 9.0s (next.js: 3.6s, proxy.ts: 356ms, application-code: 5.0s)
+ GET /admin/purchases 200 in 7.5s (next.js: 1258ms, proxy.ts: 292ms, application-code: 6.0s)
+ GET /api/auth/session 200 in 1090ms (next.js: 976ms, application-code: 115ms)
+ GET /api/auth/session 200 in 200ms (next.js: 61ms, application-code: 138ms)
+ GET /admin/purchases 200 in 30.0min (next.js: 29ms, proxy.ts: 1010ms, application-code: 30.0min)
+ GET /admin/purchases 200 in 5.1min (next.js: 194ms, proxy.ts: 78ms, application-code: 5.1min)

@@ -1,0 +1,313 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  CUSTOMER
+}
+
+enum OrderStatus {
+  TUNDA
+  SELESAI
+  BATAL
+}
+
+enum PurchaseStatus {
+  TUNDA
+  SELESAI
+  BATAL
+}
+
+enum PaymentType {
+  TUNAI
+  TRANSFER
+  TEMPO
+}
+
+enum BatchStatus {
+  AKTIF
+  HABIS
+  DITUTUP
+}
+
+enum OwnershipType {
+  BELI_PUTUS
+  KONSINYASI
+  DAPAT_DIRETUR
+}
+
+enum StockMovementType {
+  PEMBELIAN
+  PENJUALAN
+  RETUR_VENDOR
+  SUSUT_RUSAK
+  PENYESUAIAN_MASUK
+  PENYESUAIAN_KELUAR
+  CARRY_OVER
+}
+
+enum CashFlowType {
+  MASUK
+  KELUAR
+}
+
+enum CapitalType {
+  SETORAN
+  TAMBAHAN
+  PRIVE
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  phone     String?
+  imageUrl  String?
+  role      Role     @default(CUSTOMER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Reseller {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  imageUrl  String?
+  phone     String?
+  address   String?  @db.Text
+  isActive  Boolean  @default(true)
+  notes     String?  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id            Int             @id @default(autoincrement())
+  name          String
+  category      String
+  imageUrl      String?
+  description   String?         @db.Text
+  unit          String          @default("kg")
+  buyPrice      Decimal         @default(0) @db.Decimal(14, 2)
+  price         Decimal         @db.Decimal(14, 2)
+  stock         Decimal         @default(0) @db.Decimal(12, 3)
+  isActive      Boolean         @default(true)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  orderItems    OrderItem[]
+  purchaseItems PurchaseItem[]
+  stockBatches  StockBatch[]
+  movements     StockMovement[]
+}
+
+model ProductCategory {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Kategori untuk transaksi kas masuk dan kas keluar
+model CashCategory {
+  id        Int          @id @default(autoincrement())
+  name      String
+  type      CashFlowType // MASUK or KELUAR
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  @@unique([name, type])
+}
+
+model Vendor {
+  id             Int             @id @default(autoincrement())
+  name           String
+  imageUrl       String?
+  phone          String?
+  address        String?         @db.Text
+  paymentTerms   Int             @default(0)
+  isActive       Boolean         @default(true)
+  notes          String?         @db.Text
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  payments       VendorPayment[]
+  standaloneDebt StandaloneDebt?
+}
+
+model StandaloneDebt {
+  id         Int                     @id @default(autoincrement())
+  vendorId   Int                     @unique
+  reference  String?
+  debtDate   DateTime
+  dueDate    DateTime?
+  amount     Decimal                 @db.Decimal(14, 2)
+  paidAmount Decimal                 @default(0) @db.Decimal(14, 2)
+  notes      String?                 @db.Text
+  createdAt  DateTime                @default(now())
+  updatedAt  DateTime                @updatedAt
+  vendor     Vendor                  @relation(fields: [vendorId], references: [id])
+  payments   StandaloneDebtPayment[]
+}
+
+model StandaloneDebtPayment {
+  id        Int            @id @default(autoincrement())
+  debtId    Int
+  date      DateTime
+  amount    Decimal        @db.Decimal(14, 2)
+  notes     String?
+  createdAt DateTime       @default(now())
+  debt      StandaloneDebt @relation(fields: [debtId], references: [id], onDelete: Cascade)
+}
+
+model Purchase {
+  id            Int             @id @default(autoincrement())
+  invoiceNumber String          @unique
+  date          DateTime
+  paymentType   PaymentType
+  totalAmount   Decimal         @db.Decimal(14, 2)
+  status        PurchaseStatus  @default(SELESAI)
+  notes         String?         @db.Text
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  items         PurchaseItem[]
+  payments      VendorPayment[]
+}
+
+model PurchaseItem {
+  id         Int           @id @default(autoincrement())
+  purchaseId Int
+  productId  Int
+  quantity   Decimal       @db.Decimal(12, 3)
+  buyPrice   Decimal       @db.Decimal(14, 2)
+  sellPrice  Decimal       @db.Decimal(14, 2)
+  total      Decimal       @db.Decimal(14, 2)
+  ownership  OwnershipType @default(BELI_PUTUS)
+  purchase   Purchase      @relation(fields: [purchaseId], references: [id], onDelete: Cascade)
+  product    Product       @relation(fields: [productId], references: [id])
+  batch      StockBatch?
+}
+
+model StockBatch {
+  id             Int             @id @default(autoincrement())
+  code           String          @unique
+  receivedAt     DateTime
+  productId      Int
+  purchaseItemId Int             @unique
+  initialQty     Decimal         @db.Decimal(12, 3)
+  remainingQty   Decimal         @db.Decimal(12, 3)
+  buyPrice       Decimal         @db.Decimal(14, 2)
+  sellPrice      Decimal         @db.Decimal(14, 2)
+  ownership      OwnershipType
+  status         BatchStatus     @default(AKTIF)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  product        Product         @relation(fields: [productId], references: [id])
+  purchaseItem   PurchaseItem    @relation(fields: [purchaseItemId], references: [id], onDelete: Cascade)
+  movements      StockMovement[]
+}
+
+model StockMovement {
+  id          Int               @id @default(autoincrement())
+  date        DateTime
+  productId   Int
+  batchId     Int?
+  type        StockMovementType
+  quantity    Decimal           @db.Decimal(12, 3)
+  unitCost    Decimal           @default(0) @db.Decimal(14, 2)
+  referenceId String?
+  description String?
+  createdAt   DateTime          @default(now())
+  product     Product           @relation(fields: [productId], references: [id])
+  batch       StockBatch?       @relation(fields: [batchId], references: [id])
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  orderNumber String      @unique
+  paymentType PaymentType @default(TRANSFER)
+  totalAmount Decimal     @db.Decimal(14, 2)
+  hppAmount   Decimal     @default(0) @db.Decimal(14, 2)
+  grossProfit Decimal     @default(0) @db.Decimal(14, 2)
+  status      OrderStatus @default(TUNDA)
+  notes       String?     @db.Text
+  completedAt DateTime?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  items       OrderItem[]
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  orderId   Int
+  productId Int
+  quantity  Decimal @db.Decimal(12, 3)
+  price     Decimal @db.Decimal(14, 2)
+  hpp       Decimal @default(0) @db.Decimal(14, 2)
+  total     Decimal @db.Decimal(14, 2)
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model VendorPayment {
+  id         Int         @id @default(autoincrement())
+  vendorId   Int
+  purchaseId Int?
+  date       DateTime
+  amount     Decimal     @db.Decimal(14, 2)
+  method     PaymentType @default(TRANSFER)
+  attachment String?
+  notes      String?
+  createdAt  DateTime    @default(now())
+  vendor     Vendor      @relation(fields: [vendorId], references: [id])
+  purchase   Purchase?   @relation(fields: [purchaseId], references: [id])
+}
+
+model CashTransaction {
+  id          Int          @id @default(autoincrement())
+  date        DateTime
+  type        CashFlowType
+  category    String
+  amount      Decimal      @db.Decimal(14, 2)
+  description String?
+  referenceId String?
+  attachment  String?
+  createdAt   DateTime     @default(now())
+}
+
+model CapitalTransaction {
+  id          Int         @id @default(autoincrement())
+  date        DateTime
+  type        CapitalType
+  amount      Decimal     @db.Decimal(14, 2)
+  description String?
+  createdAt   DateTime    @default(now())
+}
+
+model DailyClosing {
+  id             Int      @id @default(autoincrement())
+  date           DateTime @unique
+  purchaseAmount Decimal  @db.Decimal(14, 2)
+  salesAmount    Decimal  @db.Decimal(14, 2)
+  hppAmount      Decimal  @db.Decimal(14, 2)
+  expenseAmount  Decimal  @db.Decimal(14, 2)
+  grossProfit    Decimal  @db.Decimal(14, 2)
+  netProfit      Decimal  @db.Decimal(14, 2)
+  remainingStock Decimal  @db.Decimal(12, 3)
+  notes          String?  @db.Text
+  closedAt       DateTime @default(now())
+}
+
+model AuditLog {
+  id        Int      @id @default(autoincrement())
+  action    String
+  entity    String
+  entityId  String?
+  details   String?  @db.Text
+  createdAt DateTime @default(now())
+}
