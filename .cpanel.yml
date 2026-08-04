@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/tanju/public_html/lapakagum.my.id
+    - /bin/cp -r . $DEPLOYPATH
