@@ -124,7 +124,7 @@ export default async function OrdersPage() {
                   productsLabel,
                   productId: firstItem?.productId || 0,
                   quantity: Number(firstItem?.quantity || 0),
-                  itemsRaw: order.items.map(i => ({ productId: i.productId, quantity: Number(i.quantity), price: Number(i.price) })),
+                  itemsRaw: order.items.map(i => ({ productId: i.productId, quantity: Number(i.quantity), price: Number(i.price), productName: i.product.name, productUnit: i.product.unit, productImageUrl: i.product.imageUrl })),
                   canEditItem: true,
                 };
 

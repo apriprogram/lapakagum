@@ -35,7 +35,7 @@ interface OrderRecord {
   productId: number;
   quantity: number;
   canEditItem: boolean;
-  itemsRaw?: { productId: number; quantity: number; price?: number }[];
+  itemsRaw?: { productId: number; quantity: number; price?: number; productName?: string; productUnit?: string; productImageUrl?: string | null }[];
 }
 
 const input = 'admin-crud-input';
@@ -113,23 +113,23 @@ function OrderFields({ order, products }: { order: OrderRecord, products: Produc
         <div className="flex flex-col gap-2">
           {itemsToRender.map((item, idx) => {
             const selectedProduct = products.find(p => p.id === item.productId);
-            const unit = selectedProduct?.unit || 'kg';
+            const unit = selectedProduct?.unit || item.productUnit || 'kg';
             const currentQuantity = quantities[String(item.productId)] || 0;
-            const currentPrice = prices[String(item.productId)] ?? (selectedProduct?.price || 0);
+            const currentPrice = prices[String(item.productId)] ?? (item.price ?? selectedProduct?.price ?? 0);
             return (
               <div key={idx} className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6">
                 <div className="flex-1">
                   <Field label="Produk" hideLabel={idx > 0}>
                     <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 overflow-hidden">
-                      {selectedProduct?.imageUrl ? (
-                        <img src={selectedProduct.imageUrl} alt={selectedProduct?.name || ''} className="size-10 object-cover bg-white" />
+                      {(selectedProduct?.imageUrl || item.productImageUrl) ? (
+                        <img src={selectedProduct?.imageUrl || item.productImageUrl!} alt={selectedProduct?.name || item.productName || ''} className="size-10 object-cover bg-white" />
                       ) : (
                         <div className="flex size-10 items-center justify-center bg-slate-200 text-slate-400">
                           <ShoppingCart className="size-4" />
                         </div>
                       )}
                       <div className="flex flex-col">
-                        <span className="text-sm font-semibold text-slate-700">{selectedProduct?.name || 'Produk tidak ditemukan'}</span>
+                        <span className="text-sm font-semibold text-slate-700">{selectedProduct?.name || item.productName || 'Produk tidak ditemukan'}</span>
                       </div>
                     </div>
                   </Field>

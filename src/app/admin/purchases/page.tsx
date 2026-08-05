@@ -113,6 +113,10 @@ export default async function PurchasesPage() {
                           Number(item.batch?.initialQty || 0),
                       ) <= 0.0001
                   );
+                const totalQty = purchase.items.reduce((sum, i) => sum + Number(i.quantity), 0);
+                const calculatedTotalAmount = purchase.items.reduce((sum, i) => sum + Number(i.total), 0);
+                const unit = purchase.items[0]?.product.unit ?? 'kg';
+
                 const record = {
                   id: purchase.id,
                   invoiceNumber: purchase.invoiceNumber,
@@ -123,7 +127,7 @@ export default async function PurchasesPage() {
                   quantity: Number(item.quantity),
                   buyPrice: Number(item.buyPrice),
                   sellPrice: Number(item.sellPrice),
-                  totalLabel: currency(Number(purchase.totalAmount)),
+                  totalLabel: currency(calculatedTotalAmount),
                   paymentType: purchase.paymentType,
                   paymentLabel: paymentTypeLabel(purchase.paymentType),
                   status: purchase.status,
@@ -133,10 +137,6 @@ export default async function PurchasesPage() {
                   itemsRaw: purchase.items.map(i => ({ productId: i.productId, quantity: Number(i.quantity), buyPrice: Number(i.buyPrice) })),
                   editable,
                 };
-
-                // Total berat semua item
-                const totalQty = purchase.items.reduce((sum, i) => sum + Number(i.quantity), 0);
-                const unit = purchase.items[0]?.product.unit ?? 'kg';
 
                 return (
                   <tr
@@ -196,7 +196,7 @@ export default async function PurchasesPage() {
 
                     {/* Total harga */}
                     <td className="px-5 pt-4 text-right total-highlight whitespace-nowrap">
-                      {currency(Number(purchase.totalAmount))}
+                      {currency(calculatedTotalAmount)}
                     </td>
 
                     {/* Status pembayaran & pesanan */}
@@ -241,7 +241,7 @@ export default async function PurchasesPage() {
                     {number(purchases.reduce((sum, purchase) => sum + purchase.items.reduce((s, i) => s + Number(i.quantity), 0), 0))} kg
                   </td>
                   <td className="px-5 py-4 text-right whitespace-nowrap text-sm text-emerald-700">
-                    {currency(purchases.reduce((sum, purchase) => sum + Number(purchase.totalAmount), 0))}
+                    {currency(purchases.reduce((sum, purchase) => sum + purchase.items.reduce((s, i) => s + Number(i.total), 0), 0))}
                   </td>
                   <td colSpan={2}></td>
                 </tr>

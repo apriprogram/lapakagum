@@ -423,8 +423,10 @@ export async function createVendor(formData: FormData) {
   await prisma.vendor.create({
     data: {
       name,
+      imageUrl: optionalText(formData, "imageUrl"),
       phone: optionalText(formData, "phone"),
       address: optionalText(formData, "address"),
+      notes: optionalText(formData, "notes"),
     },
   });
   refreshAdmin();
@@ -453,8 +455,10 @@ export async function updateVendor(id: number, formData: FormData) {
     where: { id },
     data: {
       name,
+      imageUrl: optionalText(formData, "imageUrl"),
       phone: optionalText(formData, "phone"),
       address: optionalText(formData, "address"),
+      notes: optionalText(formData, "notes"),
     },
   });
   refreshAdmin();

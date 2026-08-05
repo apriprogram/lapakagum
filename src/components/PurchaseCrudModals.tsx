@@ -192,15 +192,34 @@ export function PurchaseRowActions({
         </section>
         <section>
           <h3>Rincian barang</h3>
-          <dl>
-            <div><dt>Produk</dt><dd>{purchase.productName}</dd></div>
-            <div><dt>Jumlah</dt><dd>{purchase.quantity} {purchase.unit}</dd></div>
-            <div><dt>Harga beli</dt><dd>{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(purchase.buyPrice)}</dd></div>
-            <div><dt>Harga jual</dt><dd>{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(purchase.sellPrice)}</dd></div>
-            <div><dt>Kepemilikan</dt><dd>{purchase.ownershipLabel}</dd></div>
-            <div><dt>Total</dt><dd className="strong">{purchase.totalLabel}</dd></div>
-            <div className="wide"><dt>Catatan</dt><dd>{purchase.notes || '-'}</dd></div>
-          </dl>
+          {purchase.itemsRaw && purchase.itemsRaw.length > 0 ? (
+            <div className="flex flex-col gap-3">
+              {purchase.itemsRaw.map((item, idx) => {
+                const product = products.find(p => p.id === item.productId);
+                const subtotal = item.quantity * (item.buyPrice || 0);
+                return (
+                  <dl key={idx} className="p-3 border border-slate-100 rounded-lg bg-slate-50/50">
+                    <div><dt>Produk</dt><dd className="font-semibold text-blue-700">{product?.name || '-'}</dd></div>
+                    <div><dt>Jumlah</dt><dd>{item.quantity} {product?.unit || 'kg'}</dd></div>
+                    <div><dt>Harga beli</dt><dd>{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(item.buyPrice || 0)}</dd></div>
+                    <div><dt>Subtotal</dt><dd className="strong">{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(subtotal)}</dd></div>
+                  </dl>
+                );
+              })}
+              <dl className="mt-2 border-t border-slate-200 pt-3">
+                <div><dt>Total Keseluruhan</dt><dd className="strong text-emerald-700">{purchase.totalLabel}</dd></div>
+                <div className="wide"><dt>Catatan</dt><dd>{purchase.notes || '-'}</dd></div>
+              </dl>
+            </div>
+          ) : (
+            <dl>
+              <div><dt>Produk</dt><dd>{purchase.productName}</dd></div>
+              <div><dt>Jumlah</dt><dd>{purchase.quantity} {purchase.unit}</dd></div>
+              <div><dt>Harga beli</dt><dd>{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(purchase.buyPrice)}</dd></div>
+              <div><dt>Total</dt><dd className="strong">{purchase.totalLabel}</dd></div>
+              <div className="wide"><dt>Catatan</dt><dd>{purchase.notes || '-'}</dd></div>
+            </dl>
+          )}
         </section>
         <footer className="admin-crud-footer"><button type="button" className="admin-crud-secondary" onClick={close}>Tutup</button></footer>
       </div>
